@@ -39,7 +39,6 @@ DataSetList::DataSetList()
 };
 
 
-
 void DataSetList::fileinput() {		// insertion of dataset
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	const int saved_colors = GetConsoleTextAttribute(hConsole);
@@ -105,7 +104,6 @@ void DataSetList::fileinput() {		// insertion of dataset
 	SetConsoleTextAttribute(hConsole, FOREGROUND_LIGHTCYAN | FOREGROUND_INTENSITY);
 	cout << "There are total " << i << " data(s) inserted" << endl;
 }
-
 
 
 void DataSetList::MainMenu() {
@@ -195,24 +193,31 @@ void DataSetList::MainMenu() {
 void DataSetList::SearchingMenu() {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	const int saved_colors = GetConsoleTextAttribute(hConsole);
-	int y;
+	int input;
 
 	SetConsoleTextAttribute(hConsole, FOREGROUND_YELLOW | FOREGROUND_INTENSITY);
-	cout << "1. By ID	\n2. By Skills	\n3. By Job Title	\n4. By Country	\n5. By Skills x Job Title	\n6. By Skills x Country	\n7. By Skills x ID	\n8. By Job Title x Country	\n9. By Job Title x ID	\n10. By Country x ID";
+	cout << " 1. By ID\n 2. By Skills\n 3. By Job Title\n 4. By Country\n 5. By Skills x Job Title\n 6. By Skills x Country\n 7. By Skills x ID\n 8. By Job Title x Country\n 9. By Job Title x ID\n 10. By Country x ID";
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
-	cout << "0. Stop Searching" << endl;
+	cout << "\n-1. Stop Searching" << endl;
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	SetConsoleTextAttribute(hConsole, FOREGROUND_MAGENTA | FOREGROUND_INTENSITY);
-	cin >> y;
+	cout << "Your choice: ";
+	cin >> input;
 	SetConsoleTextAttribute(hConsole, saved_colors);
-	switch (y)
+	switch (input)
 	{
-	case 0: return;
-	case 1: SearchingByID();		system("pause"); system("cls"); MainMenu();	//go to searching by id function and go back to the main menu.
-	case 2: SearchingBySkills();	system("pause"); system("cls"); MainMenu();	//go to searching by skills function and go back to the main menu.
-	case 3: SearchingByJobTitle();	system("pause"); system("cls"); MainMenu();	//go to searching by job title function and go back to the main menu.
-	case 4: SearchingByCountry();	system("pause"); system("cls"); MainMenu();	//go to searching by country function and go back to the main menu.
+	case -1: return;
+	case 1: SearchingByID();				system("pause"); system("cls"); MainMenu();	//go to searching by id function and go back to the main menu.
+	case 2: SearchingBySkills();			system("pause"); system("cls"); MainMenu();	//go to searching by skills function and go back to the main menu.
+	case 3: SearchingByJobTitle();			system("pause"); system("cls"); MainMenu();	//go to searching by job title function and go back to the main menu.
+	case 4: SearchingByCountry();			system("pause"); system("cls"); MainMenu();	//go to searching by country function and go back to the main menu.
+	case 5: SearchingBySkillsxJobTitle();	system("pause"); system("cls"); MainMenu(); //go to searching by skills x jobtitle fucntion and go back to the main menu.
+	case 6: SearchingBySkillsxCountry();	system("pause"); system("cls"); MainMenu(); //go to searching by Skills x Country fucntion and go back to the main menu.
+	case 7: SearchingBySkillsxID();			system("pause"); system("cls"); MainMenu(); //go to searching by Skills x ID fucntion and go back to the main menu.
+	case 8: SearchingByJobTitlexCountry();	system("pause"); system("cls"); MainMenu(); //go to searching by Job Title x Country fucntion and go back to the main menu.
+	case 9: SearchingByJobTitlexID();		system("pause"); system("cls"); MainMenu(); //go to searching by Job Title x ID fucntion and go back to the main menu.
+	case 10: SearchingByCountryxID();		system("pause"); system("cls"); MainMenu(); //go to searching by Country x ID fucntion and go back to the main menu.
 	default: {
 		SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
 		cout << "Wrong input." << endl;
@@ -414,23 +419,223 @@ void DataSetList::SearchingByCountry() {
 
 }
 
+void DataSetList::SearchingBySkillsxJobTitle() {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	const int saved_colors = GetConsoleTextAttribute(hConsole);
+	string input,input2;
+	SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	cout << "Enter the Skills of the data" << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	SetConsoleTextAttribute(hConsole, FOREGROUND_MAGENTA | FOREGROUND_INTENSITY);
+	cin.ignore();
+	cout << "Input Skills first: ";
+	getline(cin, input);
+	cout << "Then input JobTitle: ";
+	getline(cin, input2);
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	clock_t tStart;
+	double duration;
+	tStart = clock();	// starting counting 
+	cout << "*************************************************************" << endl;
+	int counter = 0;
+	DataSet* CurrSet = DataSetHead;
+
+	Node* CurrNode = CurrSet->listSet->head;
+	for (; CurrNode != NULL; CurrNode = CurrNode->next) {
+		if (input.compare(CurrNode->Skills) == 0 && input2.compare(CurrNode->JobTitle) == 0) {
+			SetConsoleTextAttribute(hConsole, FOREGROUND_WHITE | FOREGROUND_INTENSITY);
+			cout << CurrNode->ID << "\t" << CurrNode->JobTitle << "\t" << CurrNode->EmailAddress << "\t" << CurrNode->LastName << "\t"
+				<< CurrNode->FirstName << "\t" << CurrNode->PhoneNumber << "\t" << CurrNode->Skills << "\t" << CurrNode->Country << "\n";
+			SetConsoleTextAttribute(hConsole, saved_colors);
+			counter++;
+		}
+	}
+}
+
+void DataSetList::SearchingBySkillsxCountry() {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	const int saved_colors = GetConsoleTextAttribute(hConsole);
+	string input, input2;
+	SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	cout << "Enter the Skills of the data" << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	SetConsoleTextAttribute(hConsole, FOREGROUND_MAGENTA | FOREGROUND_INTENSITY);
+	cin.ignore();
+	cout << "Input Skills first: ";
+	getline(cin, input);
+	cout << "Then input Country: ";
+	getline(cin, input2);
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	clock_t tStart;
+	double duration;
+	tStart = clock();	// starting counting 
+	cout << "*************************************************************" << endl;
+	int counter = 0;
+	DataSet* CurrSet = DataSetHead;
+
+	Node* CurrNode = CurrSet->listSet->head;
+	for (; CurrNode != NULL; CurrNode = CurrNode->next) {
+		if (input.compare(CurrNode->Skills) == 0 && input2.compare(CurrNode->Country) == 0) {
+			SetConsoleTextAttribute(hConsole, FOREGROUND_WHITE | FOREGROUND_INTENSITY);
+			cout << CurrNode->ID << "\t" << CurrNode->JobTitle << "\t" << CurrNode->EmailAddress << "\t" << CurrNode->LastName << "\t"
+				<< CurrNode->FirstName << "\t" << CurrNode->PhoneNumber << "\t" << CurrNode->Skills << "\t" << CurrNode->Country << "\n";
+			SetConsoleTextAttribute(hConsole, saved_colors);
+			counter++;
+		}
+	}
+}
+
+void DataSetList::SearchingBySkillsxID() {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	const int saved_colors = GetConsoleTextAttribute(hConsole);
+	string input, input2;
+	SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	cout << "Enter the Skills of the data" << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	SetConsoleTextAttribute(hConsole, FOREGROUND_MAGENTA | FOREGROUND_INTENSITY);
+	cin.ignore();
+	cout << "Input Skills first: ";
+	getline(cin, input);
+	cout << "Then input ID: ";
+	getline(cin, input2);
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	clock_t tStart;
+	double duration;
+	tStart = clock();	// starting counting 
+	cout << "*************************************************************" << endl;
+	int counter = 0;
+	DataSet* CurrSet = DataSetHead;
+
+	Node* CurrNode = CurrSet->listSet->head;
+	for (; CurrNode != NULL; CurrNode = CurrNode->next) {
+		if (input.compare(CurrNode->Skills) == 0 && input2.compare(CurrNode->ID) == 0) {
+			SetConsoleTextAttribute(hConsole, FOREGROUND_WHITE | FOREGROUND_INTENSITY);
+			cout << CurrNode->ID << "\t" << CurrNode->JobTitle << "\t" << CurrNode->EmailAddress << "\t" << CurrNode->LastName << "\t"
+				<< CurrNode->FirstName << "\t" << CurrNode->PhoneNumber << "\t" << CurrNode->Skills << "\t" << CurrNode->Country << "\n";
+			SetConsoleTextAttribute(hConsole, saved_colors);
+			counter++;
+		}
+	}
+}
+
+void DataSetList::SearchingByJobTitlexCountry() {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	const int saved_colors = GetConsoleTextAttribute(hConsole);
+	string input, input2;
+	SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	cout << "Enter the Skills of the data" << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	SetConsoleTextAttribute(hConsole, FOREGROUND_MAGENTA | FOREGROUND_INTENSITY);
+	cin.ignore();
+	cout << "Input JobTitle first: ";
+	getline(cin, input);
+	cout << "Then input Country: ";
+	getline(cin, input2);
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	clock_t tStart;
+	double duration;
+	tStart = clock();	// starting counting 
+	cout << "*************************************************************" << endl;
+	int counter = 0;
+	DataSet* CurrSet = DataSetHead;
+
+	Node* CurrNode = CurrSet->listSet->head;
+	for (; CurrNode != NULL; CurrNode = CurrNode->next) {
+		if (input.compare(CurrNode->JobTitle) == 0 && input2.compare(CurrNode->Country) == 0) {
+			SetConsoleTextAttribute(hConsole, FOREGROUND_WHITE | FOREGROUND_INTENSITY);
+			cout << CurrNode->ID << "\t" << CurrNode->JobTitle << "\t" << CurrNode->EmailAddress << "\t" << CurrNode->LastName << "\t"
+				<< CurrNode->FirstName << "\t" << CurrNode->PhoneNumber << "\t" << CurrNode->Skills << "\t" << CurrNode->Country << "\n";
+			SetConsoleTextAttribute(hConsole, saved_colors);
+			counter++;
+		}
+	}
+}
+
+void DataSetList::SearchingByJobTitlexID() {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	const int saved_colors = GetConsoleTextAttribute(hConsole);
+	string input, input2;
+	SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	cout << "Enter the Skills of the data" << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	SetConsoleTextAttribute(hConsole, FOREGROUND_MAGENTA | FOREGROUND_INTENSITY);
+	cin.ignore();
+	cout << "Input JobTitle first: ";
+	getline(cin, input);
+	cout << "Then input ID: ";
+	getline(cin, input2);
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	clock_t tStart;
+	double duration;
+	tStart = clock();	// starting counting 
+	cout << "*************************************************************" << endl;
+	int counter = 0;
+	DataSet* CurrSet = DataSetHead;
+
+	Node* CurrNode = CurrSet->listSet->head;
+	for (; CurrNode != NULL; CurrNode = CurrNode->next) {
+		if (input.compare(CurrNode->JobTitle) == 0 && input2.compare(CurrNode->ID) == 0) {
+			SetConsoleTextAttribute(hConsole, FOREGROUND_WHITE | FOREGROUND_INTENSITY);
+			cout << CurrNode->ID << "\t" << CurrNode->JobTitle << "\t" << CurrNode->EmailAddress << "\t" << CurrNode->LastName << "\t"
+				<< CurrNode->FirstName << "\t" << CurrNode->PhoneNumber << "\t" << CurrNode->Skills << "\t" << CurrNode->Country << "\n";
+			SetConsoleTextAttribute(hConsole, saved_colors);
+			counter++;
+		}
+	}
+}
+
+void DataSetList::SearchingByCountryxID() {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	const int saved_colors = GetConsoleTextAttribute(hConsole);
+	string input, input2;
+	SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	cout << "Enter the Skills of the data" << endl;
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	SetConsoleTextAttribute(hConsole, FOREGROUND_MAGENTA | FOREGROUND_INTENSITY);
+	cin.ignore();
+	cout << "Input Country first: ";
+	getline(cin, input);
+	cout << "Then input ID: ";
+	getline(cin, input2);
+	SetConsoleTextAttribute(hConsole, saved_colors);
+	clock_t tStart;
+	double duration;
+	tStart = clock();	// starting counting 
+	cout << "*************************************************************" << endl;
+	int counter = 0;
+	DataSet* CurrSet = DataSetHead;
+
+	Node* CurrNode = CurrSet->listSet->head;
+	for (; CurrNode != NULL; CurrNode = CurrNode->next) {
+		if (input.compare(CurrNode->Country) == 0 && input2.compare(CurrNode->ID) == 0) {
+			SetConsoleTextAttribute(hConsole, FOREGROUND_WHITE | FOREGROUND_INTENSITY);
+			cout << CurrNode->ID << "\t" << CurrNode->JobTitle << "\t" << CurrNode->EmailAddress << "\t" << CurrNode->LastName << "\t"
+				<< CurrNode->FirstName << "\t" << CurrNode->PhoneNumber << "\t" << CurrNode->Skills << "\t" << CurrNode->Country << "\n";
+			SetConsoleTextAttribute(hConsole, saved_colors);
+			counter++;
+		}
+	}
+}
+
+
 void DataSetList::DeletionMenu() {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	const int saved_colors = GetConsoleTextAttribute(hConsole);
 	int input;
 	SetConsoleTextAttribute(hConsole, FOREGROUND_YELLOW | FOREGROUND_INTENSITY);
-	cout << "1. By PhoneNumber   2. By Country	";
+	cout << " 1. By PhoneNumber   \n 2. By Country	";
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
-	cout << "0. Stop Searching" << endl;
+	cout << "\n-1. Stop Searching" << endl;
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	SetConsoleTextAttribute(hConsole, FOREGROUND_MAGENTA | FOREGROUND_INTENSITY);
+	cout << "Your choice: ";
 	cin >> input;
 	SetConsoleTextAttribute(hConsole, saved_colors);
 
 	switch (input)
 	{
-	case 0: return;
+	case -1: return;
 	case 1: DeletionByPhoneNumber(); system("pause"); system("cls"); MainMenu();	//go to delete by phone function and go back to the main menu.
 	case 2: DeletionByCountry();	system("pause"); system("cls"); MainMenu();	//go to delete by country function and go back to the main menu.
 	default: system("cls"); DeletionMenu();
@@ -503,8 +708,6 @@ void DataSetList::DeletionByPhoneNumber() {
 		SetConsoleTextAttribute(hConsole, saved_colors);
 	}
 }
-
-
 
 void DataSetList::DeletionByCountry() {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);

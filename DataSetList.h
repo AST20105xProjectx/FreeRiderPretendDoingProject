@@ -22,13 +22,16 @@ public:
 	void SearchingByJobTitle();
 	void SearchingByCountry();
 	
+	void SearchingBySkillsxJobTitle();
+	void SearchingBySkillsxCountry();
+	void SearchingBySkillsxID();	
+	void SearchingByJobTitlexCountry();
+	void SearchingByJobTitlexID();
+	void SearchingByCountryxID();
+
 	void DeletionMenu();
 	void DeletionByPhoneNumber();
 	void DeletionByCountry();
-
-
-
-
 };
 
 #endif
