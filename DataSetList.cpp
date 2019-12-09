@@ -196,7 +196,7 @@ void DataSetList::SearchingMenu() {
 	int input;
 
 	SetConsoleTextAttribute(hConsole, FOREGROUND_YELLOW | FOREGROUND_INTENSITY);
-	cout << " 1. By ID\n 2. By Skills\n 3. By Job Title\n 4. By Country\n 5. By Skills x Job Title\n 6. By Skills x Country\n 7. By Skills x ID\n 8. By Job Title x Country\n 9. By Job Title x ID\n 10. By Country x ID";
+	cout << " 1. By ID\n 2. By Skills\n 3. By Job Title\n 4. By Country\n 5. By Skills x Job Title\n 6. By Skills x Country\n 7. By Skills x ID\n 8. By Job Title x Country\n 9. By Job Title x ID\n10. By Country x ID";
 	SetConsoleTextAttribute(hConsole, saved_colors);
 	SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
 	cout << "\n-1. Stop Searching" << endl;
@@ -450,6 +450,22 @@ void DataSetList::SearchingBySkillsxJobTitle() {
 			counter++;
 		}
 	}
+	SetConsoleTextAttribute(hConsole, FOREGROUND_LIGHTCYAN | FOREGROUND_INTENSITY);
+	duration = (clock() - tStart) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';// cout the time that use for searching
+	SetConsoleTextAttribute(hConsole, saved_colors);
+
+	if (counter == 0) {
+		SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
+		cout << "No data found" << endl;
+		SetConsoleTextAttribute(hConsole, saved_colors);
+	}
+	else {
+		SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		cout << "Number of Data: " << counter << endl;
+		SetConsoleTextAttribute(hConsole, saved_colors);
+	}
+
 }
 
 void DataSetList::SearchingBySkillsxCountry() {
@@ -483,6 +499,22 @@ void DataSetList::SearchingBySkillsxCountry() {
 			counter++;
 		}
 	}
+	SetConsoleTextAttribute(hConsole, FOREGROUND_LIGHTCYAN | FOREGROUND_INTENSITY);
+	duration = (clock() - tStart) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';// cout the time that use for searching
+	SetConsoleTextAttribute(hConsole, saved_colors);
+
+	if (counter == 0) {
+		SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
+		cout << "No data found" << endl;
+		SetConsoleTextAttribute(hConsole, saved_colors);
+	}
+	else {
+		SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		cout << "Number of Data: " << counter << endl;
+		SetConsoleTextAttribute(hConsole, saved_colors);
+	}
+
 }
 
 void DataSetList::SearchingBySkillsxID() {
@@ -516,6 +548,22 @@ void DataSetList::SearchingBySkillsxID() {
 			counter++;
 		}
 	}
+	SetConsoleTextAttribute(hConsole, FOREGROUND_LIGHTCYAN | FOREGROUND_INTENSITY);
+	duration = (clock() - tStart) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';// cout the time that use for searching
+	SetConsoleTextAttribute(hConsole, saved_colors);
+
+	if (counter == 0) {
+		SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
+		cout << "No data found" << endl;
+		SetConsoleTextAttribute(hConsole, saved_colors);
+	}
+	else {
+		SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		cout << "Number of Data: " << counter << endl;
+		SetConsoleTextAttribute(hConsole, saved_colors);
+	}
+
 }
 
 void DataSetList::SearchingByJobTitlexCountry() {
@@ -549,6 +597,22 @@ void DataSetList::SearchingByJobTitlexCountry() {
 			counter++;
 		}
 	}
+	SetConsoleTextAttribute(hConsole, FOREGROUND_LIGHTCYAN | FOREGROUND_INTENSITY);
+	duration = (clock() - tStart) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';// cout the time that use for searching
+	SetConsoleTextAttribute(hConsole, saved_colors);
+
+	if (counter == 0) {
+		SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
+		cout << "No data found" << endl;
+		SetConsoleTextAttribute(hConsole, saved_colors);
+	}
+	else {
+		SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		cout << "Number of Data: " << counter << endl;
+		SetConsoleTextAttribute(hConsole, saved_colors);
+	}
+
 }
 
 void DataSetList::SearchingByJobTitlexID() {
@@ -582,6 +646,22 @@ void DataSetList::SearchingByJobTitlexID() {
 			counter++;
 		}
 	}
+	SetConsoleTextAttribute(hConsole, FOREGROUND_LIGHTCYAN | FOREGROUND_INTENSITY);
+	duration = (clock() - tStart) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';// cout the time that use for searching
+	SetConsoleTextAttribute(hConsole, saved_colors);
+
+	if (counter == 0) {
+		SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
+		cout << "No data found" << endl;
+		SetConsoleTextAttribute(hConsole, saved_colors);
+	}
+	else {
+		SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		cout << "Number of Data: " << counter << endl;
+		SetConsoleTextAttribute(hConsole, saved_colors);
+	}
+
 }
 
 void DataSetList::SearchingByCountryxID() {
@@ -615,6 +695,22 @@ void DataSetList::SearchingByCountryxID() {
 			counter++;
 		}
 	}
+	SetConsoleTextAttribute(hConsole, FOREGROUND_LIGHTCYAN | FOREGROUND_INTENSITY);
+	duration = (clock() - tStart) / (double)CLOCKS_PER_SEC;
+	cout << "Program Run time: " << duration << "s" << '\n';// cout the time that use for searching
+	SetConsoleTextAttribute(hConsole, saved_colors);
+
+	if (counter == 0) {
+		SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
+		cout << "No data found" << endl;
+		SetConsoleTextAttribute(hConsole, saved_colors);
+	}
+	else {
+		SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		cout << "Number of Data: " << counter << endl;
+		SetConsoleTextAttribute(hConsole, saved_colors);
+	}
+
 }
 
 
